@@ -45,8 +45,17 @@ function printEarnings(earnings){
         output.append($("<td></td>").text(earnings[i].inflationPercent));
         output.append($("<td></td>").text(earnings[i].inflationCalc));
         $("#output").append(output);
-        $("table").removeClass("hide");
     }
+
+    $("table").removeClass("hide");
+    $("table").dataTable({
+        "retrieve": true,
+        "paging":   false,
+        "ordering": true,
+        "order": [[ 2, "desc" ]],
+        "info":     false,
+        "search":   false
+    });
 }
 
 function inflateEarnings(earnings){
