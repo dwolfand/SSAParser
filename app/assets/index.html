@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>SSA PDF Parser</title>
+  <link rel="stylesheet" href="/stylesheets/app.css">
 </head>
 
 <body>
@@ -14,8 +15,6 @@
     <canvas id="the-canvas" style="border:1px solid black;"/>
 </body>
 
-<script src="js/bignumber.js"></script>
-<script src="js/pdf.js"></script>
-<script src="js/pdf.worker.js"></script>
-<script src="js/indexingFactors.js"></script>
-<script src="js/parser.js"></script>
+<script src="scripts/vendor.js"></script>
+<script src="scripts/app.js"></script>
+<script>require('scripts/parser');</script>
