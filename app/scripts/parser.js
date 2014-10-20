@@ -20,14 +20,15 @@ function parseEarnings(textArray, index){
 }
 
 function printEarnings(earnings){
-  for (var i = 0; i < earnings.length; i++) {
-    var output = $("<tr></tr>");
-    output.append($("<td></td>").text(earnings[i].year));
-    output.append($("<td></td>").text(earnings[i].ssEarnings));
-    output.append($("<td></td>").text(earnings[i].medEarnings));
-    $("#output").append(output);
-    $("table").removeClass("hide");
-  }
+    $("#output").empty();
+    for (var i = 0; i < earnings.length; i++) {
+        var output = $("<tr></tr>");
+        output.append($("<td></td>").text(earnings[i].year));
+        output.append($("<td></td>").text(earnings[i].ssEarnings));
+        output.append($("<td></td>").text(earnings[i].medEarnings));
+        $("#output").append(output);
+        $("table").removeClass("hide");
+    }
 }
 
 function sortEarnings(earnings){
