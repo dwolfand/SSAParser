@@ -9,27 +9,31 @@
 
 <body>
     <div class="container container-fluid">
-        <br><br>
-        <div class="col-xs-2">
-            <div class="form-group">
-                <label>Current Salary</label>
-                <input type="text" class="form-control" name="salary" />
-            </div>
-            <div class="form-group">
-                <label>Age</label>
-                <input type="age" class="form-control" name="age" />
-            </div>
-            <div class="form-group">
-                <div class="fileinputs">
-                    <input type="file" class="file" id="files" name="files[]" />
-                    <div class="fakefile">
-                        <button class="btn btn-primary" id="upload">Upload your SSA PDF</button>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>SSA Parser</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-8">
+            <div class="col-xs-3">
+                <div class="form-group">
+                    <label>Current Salary</label>
+                    <input type="text" class="form-control" name="salary" />
+                </div>
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="age" class="form-control" name="age" />
+                </div>
+                <div class="form-group">
+                    <div class="fileinputs">
+                        <input type="file" class="file" id="files" name="files[]" />
+                        <div class="fakefile">
+                            <button class="btn btn-primary" id="upload">Upload your SSA PDF</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-9">
                 <table class="table table-striped hide">
                     <thead>
                         <tr>
