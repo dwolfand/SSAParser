@@ -9,6 +9,7 @@
 *.vi
 *~
 *.sass-cache
+*.sublime*
 
 # OS or Editor folders
 .DS_Store
