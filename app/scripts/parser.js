@@ -1,7 +1,7 @@
-var indexingFactors = require("scripts/indexingFactors"),
-    currency = require("scripts/currency"),
-    age = 60,
-    salary = new currency(100000);
+var indexingFactors = require("scripts/indexingFactors");
+var age = 28;
+var salary = new BigNumber("100000");
+var currency = require("scripts/currency");
 
 PDFJS.disableWorker = true;
 // console.log("blah",document.getElementsByTagName('head')[0]);
@@ -33,16 +33,17 @@ function parseEarnings(textArray, index){
 }
 
 function printEarnings(earnings){
-  for (var i = 0; i < earnings.length; i++) {
-    var output = $("<tr></tr>");
-    output.append($("<td></td>").text(earnings[i].year));
-    output.append($("<td></td>").text(earnings[i].ssEarnings));
-    output.append($("<td></td>").text(earnings[i].inflatedEarnings));
-    output.append($("<td></td>").text(earnings[i].inflationPercent));
-    output.append($("<td></td>").text(earnings[i].inflationCalc));
-    $("#output").append(output);
-    $("table").removeClass("hide");
-  }
+    $("#output").empty();
+    for (var i = 0; i < earnings.length; i++) {
+        var output = $("<tr></tr>");
+        output.append($("<td></td>").text(earnings[i].year));
+        output.append($("<td></td>").text(earnings[i].ssEarnings));
+        output.append($("<td></td>").text(earnings[i].inflatedEarnings));
+        output.append($("<td></td>").text(earnings[i].inflationPercent));
+        output.append($("<td></td>").text(earnings[i].inflationCalc));
+        $("#output").append(output);
+        $("table").removeClass("hide");
+    }
 }
 
 function inflateEarnings(earnings){
