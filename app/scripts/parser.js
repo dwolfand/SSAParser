@@ -1,4 +1,9 @@
- PDFJS.disableWorker = true;
+var indexingFactors = require("scripts/indexingFactors");
+var age = 28;
+var salary = new BigNumber("100000");
+var currency = require("scripts/currency");
+
+PDFJS.disableWorker = true;
 // console.log("blah",document.getElementsByTagName('head')[0]);
 //PDFJS.workerSrc = 'pdf.worker.js';
 
@@ -7,10 +12,18 @@ function parseEarnings(textArray, index){
   //Dont loop more than 100 times since if they ever change the pdf we dont want an infinite loop.
   for (var i = 0; i < 100; i++) {
     var tempIndex = index+(i*3);
+    console.log("parsing item: ", textArray[tempIndex+1].str);
+    //this is just for testing the sort
+    if (textArray[tempIndex+1].str === "65,000"){
+      textArray[tempIndex+1].str = "105,000";
+      textArray[tempIndex+2].str = "105,000";
+    }
     earnings.push({
       year: textArray[tempIndex].str,
-      ssEarnings: textArray[tempIndex+1].str,
-      medEarnings: textArray[tempIndex+2].str
+      ssEarnings: new currency(textArray[tempIndex+1].str.replace(",","")),
+      medEarnings: new currency(textArray[tempIndex+2].str.replace(",",""))
+      // ssEarnings: textArray[tempIndex+1].str,
+      // medEarnings: textArray[tempIndex+2].str
     });
     if (textArray[tempIndex+3].str === "You and your family may be eligible for valuable"){
       break;
@@ -33,8 +46,17 @@ function printEarnings(earnings){
 
 function sortEarnings(earnings){
   return earnings.sort(function(a, b){
-    return a.ssEarnings.greaterThan(b.ssEarnings);
+    return b.ssEarnings.cmp(a.ssEarnings);
   });
+}
+
+function projectEarnings(earnings){
+  earnings.push({
+    year: 2015,
+    ssEarnings: new currency("117000"),
+    medEarnings: new currency("117000")
+  });
+  return earnings;
 }
 
 function handleFileSelect(evt) {
@@ -64,8 +86,10 @@ function handleFileSelect(evt) {
               for (var j = 0; j <= textContent.items.length; j++) {
                 var item = textContent.items[j];
                 if (item.str === "Medicare" && textContent.items[j+1].str === "Earnings"){
-                  console.log("found it!");
+                  console.log("found it!", indexingFactors);
                   earnings = parseEarnings(textContent.items, j+2);
+                  projectEarnings(earnings);
+                  sortEarnings(earnings);
                   console.log("earnings", earnings);
                   printEarnings(earnings);
                   break;
