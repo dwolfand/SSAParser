@@ -1,7 +1,7 @@
 var indexingFactors = require("scripts/indexingFactors");
-var age = 28;
-var salary = new BigNumber("100000");
 var currency = require("scripts/currency");
+var age = 28;
+var salary = new currency("100000");
 
 PDFJS.disableWorker = true;
 // console.log("blah",document.getElementsByTagName('head')[0]);
