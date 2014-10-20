@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://secure.ssa.gov/OSSS/er/er001View.do -->
+<html id="er001" lang="en" data-ember-extension="1">
+<head>
+  <meta charset="UTF-8">
+  <title>SSA PDF Parser</title>
+</head>
+
+<body>
+
+    <input type="file" id="files" name="files[]" multiple />
+    <output id="list"></output>
+    <br/>
+    <canvas id="the-canvas" style="border:1px solid black;"/>
+</body>
+
+<script src="js/bignumber.js"></script>
+<script src="js/pdf.js"></script>
+<script src="js/pdf.worker.js"></script>
+<script src="js/indexingFactors.js"></script>
+<script src="js/parser.js"></script>
