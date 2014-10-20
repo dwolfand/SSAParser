@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!-- saved from url=(0043)https://secure.ssa.gov/OSSS/er/er001View.do -->
 <html id="er001" lang="en" data-ember-extension="1">
@@ -9,27 +10,31 @@
 
 <body>
     <div class="container container-fluid">
-        <br><br>
-        <div class="col-xs-2">
-            <div class="form-group">
-                <label>Current Salary</label>
-                <input type="text" class="form-control" name="salary" />
-            </div>
-            <div class="form-group">
-                <label>Age</label>
-                <input type="age" class="form-control" name="age" />
-            </div>
-            <div class="form-group">
-                <div class="fileinputs">
-                    <input type="file" class="file" id="files" name="files[]" />
-                    <div class="fakefile">
-                        <button class="btn btn-primary" id="upload">Upload your SSA PDF</button>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>SSA Parser</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-8">
+            <div class="col-xs-3">
+                <div class="form-group">
+                    <label>Current Salary</label>
+                    <input type="text" class="form-control" name="salary" />
+                </div>
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="age" class="form-control" name="age" />
+                </div>
+                <div class="form-group">
+                    <div class="fileinputs">
+                        <input type="file" class="file" id="files" name="files[]" />
+                        <div class="fakefile">
+                            <button class="btn btn-primary" id="upload">Upload your SSA PDF</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-9">
                 <table class="table table-striped hide">
                     <thead>
                         <tr>
@@ -37,7 +42,7 @@
                             <th>Earnings</th>
                             <th>Inflated</th>
                             <th>Inflation Percent</th>
-                            <th>Inflation Calculation</th>
+                            <th>Inflation Calc</th>
                         </tr>
                     </thead>
                     <tbody id="output">
@@ -50,7 +55,6 @@
         </div>
     </div>
 </body>
-
 <script src="scripts/vendor.js"></script>
 <script src="scripts/app.js"></script>
 <script>require('scripts/parser');</script>
