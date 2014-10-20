@@ -21,9 +21,12 @@ function parseEarnings(textArray, index){
 
 function printEarnings(earnings){
   for (var i = 0; i < earnings.length; i++) {
-    var span = document.createElement('span');
-    span.innerHTML = "</br>"+earnings[i].year+" - "+ earnings[i].ssEarnings + " - " + earnings[i].medEarnings;
-    document.getElementById('list').insertBefore(span, null);
+    var output = $("<tr></tr>");
+    output.append($("<td></td>").text(earnings[i].year));
+    output.append($("<td></td>").text(earnings[i].ssEarnings));
+    output.append($("<td></td>").text(earnings[i].medEarnings));
+    $("#output").append(output);
+    $("table").removeClass("hide");
   }
 }
 

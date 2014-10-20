@@ -10,6 +10,7 @@ exports.config = {
       },
       order: {
         before: [
+          'vendor/scripts/jquery.min.js',
           'vendor/scripts/bignumber.js',
           'vendor/scripts/pdf.js',
           'vendor/scripts/pdf.worker.js'
