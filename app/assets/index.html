@@ -8,11 +8,45 @@
 </head>
 
 <body>
-
-    <input type="file" id="files" name="files[]" multiple />
-    <output id="list"></output>
-    <br/>
-    <canvas id="the-canvas" style="border:1px solid black;"/>
+    <div class="container container-fluid">
+        <br><br>
+        <div class="col-xs-2">
+            <div class="form-group">
+                <label>Current Salary</label>
+                <input type="text" class="form-control" name="salary" />
+            </div>
+            <div class="form-group">
+                <label>Age</label>
+                <input type="age" class="form-control" name="age" />
+            </div>
+            <div class="form-group">
+                <div class="fileinputs">
+                    <input type="file" class="file" id="files" name="files[]" />
+                    <div class="fakefile">
+                        <button class="btn btn-primary" id="upload">Upload your SSA PDF</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <table class="table table-striped hide">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Earnings</th>
+                            <th>Inflated</th>
+                        </tr>
+                    </thead>
+                    <tbody id="output">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <canvas id="the-canvas"/>
+        </div>
+    </div>
 </body>
 
 <script src="scripts/vendor.js"></script>
