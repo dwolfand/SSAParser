@@ -36,6 +36,9 @@ function printEarnings(earnings){
     $("#output").empty();
     for (var i = 0; i < earnings.length; i++) {
         var output = $("<tr></tr>");
+        if (earnings[i].isTopYear){
+          output = $('<tr class="top-year"></tr>');
+        }
         output.append($("<td></td>").text(earnings[i].year));
         output.append($("<td></td>").text(earnings[i].ssEarnings));
         output.append($("<td></td>").text(earnings[i].inflatedEarnings));
@@ -66,9 +69,15 @@ function inflateEarnings(earnings){
   }
 }
 
-function sortEarnings(earnings){
+function sortEarningsByAmount(earnings){
   return earnings.sort(function(a, b){
     return b.inflatedEarnings.cmp(a.inflatedEarnings);
+  });
+}
+
+function sortEarningsByYear(earnings){
+  return earnings.sort(function(a, b){
+    return new BigNumber(b.year).cmp(new BigNumber(a.year));
   });
 }
 
@@ -81,6 +90,17 @@ function projectEarnings(earnings){
       medEarnings: salary
     });
   }
+  return earnings;
+}
+
+function markTopYears(earnings){
+  sortEarningsByAmount(earnings);
+  for (var i = 0; i < 35; i++) {
+    if (earnings[i]){
+      earnings[i].isTopYear = true;
+    }
+  }
+  sortEarningsByYear(earnings);
   return earnings;
 }
 
@@ -108,11 +128,13 @@ function handleFileSelect(evt) {
                   var item = textContent.items[j];
                   if (item.str === "Medicare" && textContent.items[j+1].str === "Earnings"){
                       try {
+                        age = $("#age").val();
+                        salary = new currency($("#salary").val());
                         console.log("found it!", indexingFactors);
                         earnings = parseEarnings(textContent.items, j+2);
                         projectEarnings(earnings);
                         inflateEarnings(earnings);
-                        sortEarnings(earnings);
+                        markTopYears(earnings);
                         console.log("earnings", earnings);
                         printEarnings(earnings);
                       }
@@ -157,3 +179,8 @@ function handleFileSelect(evt) {
 }
 
 document.getElementById('files').addEventListener('change', handleFileSelect, false);
+document.getElementById('files').addEventListener('click', handleFileSelect, false);
+
+//Some default values
+$("#age").val("34");
+$("#salary").val("102000");
