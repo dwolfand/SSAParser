@@ -1,3 +1,5 @@
+var currency = require("scripts/currency");
+
 module.exports = {
     1951: new BigNumber('2799.16'),
     1952: new BigNumber('2973.32'),
