@@ -31,6 +31,6 @@ module.exports = {
 
     },
     printBenefit: function(benefit){
-        $("#benefit").text("Your full retirement benefit is: "+benefit.toString(2));
+        $("#benefit").addClass("alert alert-success").text("Your full retirement benefit is "+benefit.toString(2));
     }
 };
