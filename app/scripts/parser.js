@@ -89,16 +89,15 @@ function markTopYears(earnings){
 
 function getTopYearAverage(earnings){
   var total = new currency(0);
-  var numYears = 0;
+
   for (var i = 0; i < earnings.length; i++) {
     var curYearEarn = earnings[i];
     if (curYearEarn.isTopYear){
-      numYears++;
       total = total.plus(curYearEarn.inflatedEarnings);
     }
   }
-  console.log("average of top "+numYears+" years: ", total.div(numYears).toString());
-  return total.div(numYears);
+  console.log("average of top 35 years: ", total.div(35).toString());
+  return total.div(35);
 }
 
 function calculateBenefit(avgYear){
