@@ -28,6 +28,6 @@
     margin-top: 8px;
 }
 
-table.dataTable tbody tr.top-year {
-    background: rgb(170, 219, 70);
+table.dataTable tbody tr.top-year td {
+    background: rgb(170, 219, 70) !important;
 }
