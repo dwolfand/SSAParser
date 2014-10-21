@@ -1,6 +1,6 @@
 var indexingFactors = require("scripts/indexingFactors");
 var currency = require("scripts/currency");
-var printEarnings = require("scripts/printEarnings");
+var printer = require("scripts/printer");
 var age;
 var salary;
 
@@ -147,8 +147,8 @@ function handleFileSelect(evt) {
                         console.log("earnings", earnings);
                         var avg = getTopYearAverage(earnings);
                         var fullRetAgeBenefit = calculateBenefit(avg);
-                        console.log("full ret age benefit:", fullRetAgeBenefit.toString(2));
-                        printEarnings(earnings);
+                        printer.printBenefit(calculateBenefit(avg));
+                        printer.printEarnings(earnings);
                       }
                       catch(err){
                         console.error("Error on parse: ",err);
