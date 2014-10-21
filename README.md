@@ -2,7 +2,7 @@
 
 A tool to parse your Social Security Administration earnings PDF into your projected full retirement benefit
 
-This is HTML5 application, built with [Brunch](http://brunch.io) and uses PDF.js to parse the PDF all in the browser.
+This is HTML5 application, built with [Brunch](http://brunch.io) and uses [PDF.js](http://mozilla.github.io/pdf.js/) to parse the PDF all in the browser.
 
 ## Getting started
 * Install (if you don't have them):
