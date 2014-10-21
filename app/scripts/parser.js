@@ -101,6 +101,18 @@ function getTopYearAverage(earnings){
   return total.div(numYears);
 }
 
+function calculateBenefit(avgYear){
+  var avgMonth = avgYear.div(12);
+
+  if (avgMonth.lessThanOrEqualTo(new currency(816))){
+    return avgMonth.times(".9");
+  } else if (avgMonth.lessThan(new currency(4917))){
+    return new currency("734.40").plus(avgMonth.minus(816).times(".32"));
+  } else {
+    return new currency("2046.72").plus(avgMonth.minus(4917).times(".15"));
+  }
+}
+
 function handleFileSelect(evt) {
   try {
     var files = evt.target.files; // FileList object
@@ -134,6 +146,8 @@ function handleFileSelect(evt) {
                         markTopYears(earnings);
                         console.log("earnings", earnings);
                         var avg = getTopYearAverage(earnings);
+                        var fullRetAgeBenefit = calculateBenefit(avg);
+                        console.log("full ret age benefit:", fullRetAgeBenefit.toString(2));
                         printEarnings(earnings);
                       }
                       catch(err){
