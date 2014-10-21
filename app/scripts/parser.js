@@ -1,8 +1,8 @@
 var indexingFactors = require("scripts/indexingFactors");
 var currency = require("scripts/currency");
 var printEarnings = require("scripts/printEarnings");
-var age = 28;
-var salary = new currency("100000");
+var age;
+var salary;
 
 PDFJS.disableWorker = true;
 // console.log("blah",document.getElementsByTagName('head')[0]);
@@ -20,7 +20,7 @@ function parseEarnings(textArray, index){
       textArray[tempIndex+2].str = "105,000";
     }
     earnings.push({
-      year: textArray[tempIndex].str,
+      year: parseInt(textArray[tempIndex].str),
       ssEarnings: new currency(textArray[tempIndex+1].str.replace(",","")),
       medEarnings: new currency(textArray[tempIndex+2].str.replace(",",""))
       // ssEarnings: textArray[tempIndex+1].str,
@@ -39,7 +39,6 @@ function inflateEarnings(earnings){
     baseWageIndexYear = 2014 - (age-60);
   }
   var baseWageIndexAmt = indexingFactors[baseWageIndexYear];
-  console.log("amount", indexingFactors, baseWageIndexYear, baseWageIndexAmt.toString());
   for (var i = 0; i < earnings.length; i++) {
     var curYearEarn = earnings[i];
     if (curYearEarn.year >= 2014 || curYearEarn.year >= baseWageIndexYear){
@@ -88,6 +87,20 @@ function markTopYears(earnings){
   return earnings;
 }
 
+function getTopYearAverage(earnings){
+  var total = new currency(0);
+  var numYears = 0;
+  for (var i = 0; i < earnings.length; i++) {
+    var curYearEarn = earnings[i];
+    if (curYearEarn.isTopYear){
+      numYears++;
+      total = total.plus(curYearEarn.inflatedEarnings);
+    }
+  }
+  console.log("average of top "+numYears+" years: ", total.div(numYears).toString());
+  return total.div(numYears);
+}
+
 function handleFileSelect(evt) {
   try {
     var files = evt.target.files; // FileList object
@@ -114,12 +127,13 @@ function handleFileSelect(evt) {
                       try {
                         age = $("#age").val();
                         salary = new currency($("#salary").val());
-                        console.log("found it!", indexingFactors);
+                        console.log("found earning starting at item: ", j);
                         earnings = parseEarnings(textContent.items, j+2);
                         projectEarnings(earnings);
                         inflateEarnings(earnings);
                         markTopYears(earnings);
                         console.log("earnings", earnings);
+                        var avg = getTopYearAverage(earnings);
                         printEarnings(earnings);
                       }
                       catch(err){
