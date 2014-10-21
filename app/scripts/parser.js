@@ -34,14 +34,14 @@ function parseEarnings(textArray, index){
 }
 
 function inflateEarnings(earnings){
-  var baseWageIndexYear = 2014;
-  if (age > 60){
+  var baseWageIndexYear = 2012;
+  if (age >= 60){
     baseWageIndexYear = 2014 - (age-60);
   }
   var baseWageIndexAmt = indexingFactors[baseWageIndexYear];
   for (var i = 0; i < earnings.length; i++) {
     var curYearEarn = earnings[i];
-    if (curYearEarn.year >= 2014 || curYearEarn.year >= baseWageIndexYear){
+    if (curYearEarn.year >= 2012 || curYearEarn.year >= baseWageIndexYear){
       curYearEarn.inflationPercent = 1;
       curYearEarn.inflatedEarnings = curYearEarn.ssEarnings;
     } else {
@@ -138,6 +138,9 @@ function handleFileSelect(evt) {
                       try {
                         age = $("#age").val();
                         salary = new currency($("#salary").val());
+                        if (salary.greaterThan(117000)){
+                          salary = new currency(117000);
+                        }
                         console.log("found earning starting at item: ", j);
                         earnings = parseEarnings(textContent.items, j+2);
                         projectEarnings(earnings);
