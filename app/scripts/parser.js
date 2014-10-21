@@ -138,6 +138,7 @@ function handleFileSelect(evt) {
                       try {
                         age = $("#age").val();
                         salary = new currency($("#salary").val());
+                        //make sure the user doesn't get credit for any amount over 117K
                         if (salary.greaterThan(117000)){
                           salary = new currency(117000);
                         }
