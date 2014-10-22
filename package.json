@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "auto-reload-brunch": ">= 1.0 < 1.8",
-    "bunch": "^0.5.1",
+    "brunch": "^1.7.18",
     "clean-css-brunch": ">= 1.0 < 1.8",
     "css-brunch": ">= 1.0 < 1.8",
     "express": "^4.9.8",
