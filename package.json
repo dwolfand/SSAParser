@@ -1,5 +1,5 @@
 {
-  "name": "SSA Parser",
+  "name": "ssaparser",
   "description": "Application to parse your social security earning record PDF and calculate your full retirement age benefits",
   "author": "David Wolfand",
   "version": "0.0.1",
