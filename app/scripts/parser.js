@@ -150,7 +150,7 @@ function handleFileSelect(evt) {
                         console.log("earnings", earnings);
                         var avg = getTopYearAverage(earnings);
                         var fullRetAgeBenefit = calculateBenefit(avg);
-                        printer.printBenefit(calculateBenefit(avg));
+                        printer.printBenefit(fullRetAgeBenefit, avg);
                         printer.printEarnings(earnings);
                       }
                       catch(err){

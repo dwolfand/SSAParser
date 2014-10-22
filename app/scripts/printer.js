@@ -30,7 +30,8 @@ module.exports = {
         });
 
     },
-    printBenefit: function(benefit){
-        $("#benefit").addClass("alert alert-success").text("Your full retirement benefit is "+benefit.toString(2));
+    printBenefit: function(benefit, average){
+        $("#benefit").addClass("alert alert-success").html("Your full retirement benefit is <b>" + benefit.toString(2) +
+            "</b> <i>(this is based on your top 35 year earning average of " + average.toString(2) + ")</i>");
     }
 };
