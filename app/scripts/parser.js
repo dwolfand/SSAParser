@@ -49,7 +49,11 @@ function inflateEarnings(earnings){
 
 function sortEarningsByAmount(earnings){
   return earnings.sort(function(a, b){
-    return b.inflatedEarnings.cmp(a.inflatedEarnings);
+    var cmp = b.inflatedEarnings.cmp(a.inflatedEarnings);
+    if (cmp === 0){
+      return new BigNumber(b.year).cmp(new BigNumber(a.year));
+    }
+    return cmp;
   });
 }
 
@@ -72,13 +76,12 @@ function projectEarnings(earnings){
 }
 
 function markTopYears(earnings){
-  sortEarningsByAmount(earnings);
+  earnings = sortEarningsByAmount(earnings);
   for (var i = 0; i < 35; i++) {
     if (earnings[i]){
       earnings[i].isTopYear = true;
     }
   }
-  sortEarningsByYear(earnings);
   return earnings;
 }
 
