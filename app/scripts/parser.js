@@ -14,11 +14,6 @@ function parseEarnings(textArray, index){
   for (var i = 0; i < 100; i++) {
     var tempIndex = index+(i*3);
     console.log("parsing item: ", textArray[tempIndex+1].str);
-    //this is just for testing the sort
-    if (textArray[tempIndex+1].str === "65,000"){
-      textArray[tempIndex+1].str = "105,000";
-      textArray[tempIndex+2].str = "105,000";
-    }
     earnings.push({
       year: parseInt(textArray[tempIndex].str),
       ssEarnings: new currency(textArray[tempIndex+1].str.replace(",","")),
@@ -198,4 +193,4 @@ document.getElementById('files').addEventListener('click', handleFileSelect, fal
 
 //Some default values
 $("#age").val("34");
-$("#salary").val("102000");
+$("#salary").val("72000");
